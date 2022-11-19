@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cf.ssm.mapper.UserMapper">
+
+
+    <!--用户名密码登录-->
+    <select id="userLogin" resultType="com.cf.ssm.pojo.User">
+        SELECT * FROM tb_user where username = #{username} and password = #{password}
+    </select>
+
+
+    <select id="getEmailOne" resultType="java.lang.Integer">
+        SELECT * FROM tb_user where email = #{email}
+    </select>
+
+
+    <!--注册-->
+    <insert id="userRegister">
+        INSERT into tb_user values(null,#{username},#{password},#{email},#{code},null,null)
+    </insert>
+
+
+
+</mapper>

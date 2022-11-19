@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cf.ssm.mapper.FaceRelevanceMapper">
+
+    <insert id="insertFaceRelevance">
+        insert into tb_face_relevance values (null,#{faceId1},#{faceId2},#{userId},#{beauty},#{winnerUrl})
+    </insert>
+
+    <select id="getFaceRelevance" resultType="com.cf.ssm.pojo.FaceRelevance">
+        select * from tb_face_relevance where faceId1 = #{faceId1}
+    </select>
+
+    <select id="getFacePKLeft" resultType="com.cf.ssm.pojo.Face">
+        SELECT
+            a.*
+        FROM
+            tb_face AS a,
+            tb_face AS b,
+            tb_face_relevance
+        WHERE
+            a.faceId = tb_face_relevance.faceId1
+          AND b.faceId = tb_face_relevance.faceId2
+          AND tb_face_relevance.userId = #{userId}
+          AND a.isDelete = 1 and b.isDelete = 1
+        ORDER BY a.id
+    </select>
+
+    <select id="getFacePKRight" resultType="com.cf.ssm.pojo.Face">
+        SELECT
+            b.*
+        FROM
+            tb_face AS a,
+            tb_face AS b,
+            tb_face_relevance
+        WHERE
+            a.faceId = tb_face_relevance.faceId1
+          AND b.faceId = tb_face_relevance.faceId2
+          AND tb_face_relevance.userId = #{userId}
+          AND a.isDelete = 1 and b.isDelete = 1;
+    </select>
+
+
+</mapper>

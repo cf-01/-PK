@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cf.ssm.mapper.FaceMapper">
+
+    <insert id="insertFace">
+        insert into tb_face values (null,#{age},#{beauty},#{gender},#{glasses},#{emotion},#{imgPath},#{faceType},#{faceShape},null,#{userId},#{isDelete},#{isShow},#{faceId})
+    </insert>
+
+
+    <select id="getTopFace" resultType="com.cf.ssm.pojo.Face">
+        select *
+        from tb_face
+        where isShow = 1 and isDelete = 1
+        ORDER BY beauty DESC limit #{num}
+    </select>
+
+    <select id="getAllFace" resultType="com.cf.ssm.pojo.Face">
+        select *
+        from tb_face
+        where isShow = 1 and isDelete = 1
+        ORDER BY beauty DESC
+    </select>
+
+    <select id="getFaceByFaceId" resultType="com.cf.ssm.pojo.Face">
+        select * from tb_face where faceId = #{faceId}
+    </select>
+
+    <select id="getFaceByUser" resultType="com.cf.ssm.pojo.Face">
+        select *
+        from tb_face
+        where isDelete = 1 and userId = #{userId}
+    </select>
+
+
+
+    <update id="updateIsShow">
+        update tb_face set isShow = #{isShow} where id = #{id}
+    </update>
+
+    <update id="updateISDelete">
+        update tb_face set isDelete = #{isDelete} where id = #{id}
+    </update>
+
+    <select id="getFaceId" resultType="java.lang.Integer">
+        select id from tb_face
+    </select>
+    <select id="getFaceById" resultType="com.cf.ssm.pojo.Face">
+        select * from tb_face where id = #{id}
+    </select>
+</mapper>
