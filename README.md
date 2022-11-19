@@ -6,6 +6,8 @@
 #### 在线网址
 [test.xhixm.com:8080](http://test.xhixm.com:8080)
 
+#### 部分截图
+
 ![首页](show%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-11-19%20235349.jpg)
 
 ![登录](showlogin.jpg)
